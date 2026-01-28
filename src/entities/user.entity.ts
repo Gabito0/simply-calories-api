@@ -3,8 +3,9 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
+import { UserProfile } from './user-profile.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -25,4 +26,7 @@ export class User {
 
   @Column({ nullable: true })
   subject_identifier: string | null;
+
+  @OneToOne(() => UserProfile, (profile) => profile.user)
+  profile: UserProfile | null;
 }
