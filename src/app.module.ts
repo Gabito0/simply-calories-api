@@ -1,10 +1,10 @@
-import { Module } from "@nestjs/common";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { CatsController } from "./cats.controller";
-import { TrackCaloriesBarcode } from "./track-calories-barcode.controller";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { CatsController } from './cats.controller';
+import { TrackCaloriesBarcode } from './track-calories-barcode.controller';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -15,15 +15,19 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        type: "postgres",
-        host: config.get("DB_HOST"),
-        port: Number(config.get("DB_PORT")),
-        username: config.get("DB_USERNAME"),
-        password: config.get("DB_PASSWORD"),
-        database: config.get("DB_NAME"),
+        type: 'postgres',
+        host: config.get('DB_HOST'),
+        port: Number(config.get('DB_PORT')),
+        username: config.get('DB_USERNAME'),
+        password: config.get('DB_PASSWORD'),
+        database: config.get('DB_NAME'),
 
         autoLoadEntities: true,
-        synchronize: true,
+        synchronize: config.get('DB_SYNC') === 'true',
+        logging: config.get('NODE_ENV') !== 'production',
+
+        // When I run in production
+        // migrationsRun: true,
       }),
     }),
   ],
