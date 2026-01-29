@@ -4,8 +4,11 @@ import {
   Column,
   CreateDateColumn,
   OneToOne,
+  ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import { UserProfile } from './user-profile.entity';
+import { UserGoalsEntry } from './user-goals-entry.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -29,4 +32,7 @@ export class User {
 
   @OneToOne(() => UserProfile, (profile) => profile.user)
   profile: UserProfile | null;
+
+  @OneToMany(() => UserGoalsEntry, (entry) => entry.user)
+  goals_entries: UserGoalsEntry[];
 }
