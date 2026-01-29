@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { UserProfile } from './user-profile.entity';
 import { UserGoalsEntry } from './user-goals-entry.entity';
+import { WeightEntry } from './weight-entry.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -35,4 +36,7 @@ export class User {
 
   @OneToMany(() => UserGoalsEntry, (entry) => entry.user)
   goals_entries: UserGoalsEntry[];
+
+  @OneToMany(() => WeightEntry, (entry) => entry.user)
+  weight_entries: WeightEntry[];
 }
