@@ -2,7 +2,7 @@ export enum MuscleGroup {
   CHEST = 'chest',
   TRICEPS = 'triceps',
   BICEPS = 'biceps',
-  FOREARMs = 'forearms',
+  FOREARMS = 'forearms',
   LEGS = 'legs',
   ABS = 'abs',
   GLUTES = 'glutes',
