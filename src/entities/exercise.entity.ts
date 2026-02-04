@@ -11,7 +11,7 @@ import { User } from './user.entity';
 import { ExerciseType } from '../enums/exercise-type.enum';
 import { MuscleGroup } from '../enums/muscle-group.enum';
 
-@Entity({ name: 'exercise' })
+@Entity({ name: 'exercises' })
 @Index('uq_exercise_creator_name', ['created_by_user_id', 'name'], {
   unique: true,
 })
@@ -33,6 +33,6 @@ export class Exercise {
   created_by_user_id: string | null;
 
   @ManyToOne(() => User, { nullable: true, onDelete: 'SET NULL' })
-  @JoinColumn({ name: 'created_by_user' })
+  @JoinColumn({ name: 'created_by_user_id' })
   created_by_user: User | null;
 }
