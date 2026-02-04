@@ -23,11 +23,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         database: config.get('DB_NAME'),
 
         autoLoadEntities: true,
-        synchronize: config.get('DB_SYNC') === 'true',
+        synchronize: false,
         logging: config.get('NODE_ENV') !== 'production',
 
         // When I run in production
-        // migrationsRun: true,
+        migrationsRun: config.get('NODE_ENV') === 'production',
+        migrations: ['dist/db/migrations/*.js'],
       }),
     }),
   ],
