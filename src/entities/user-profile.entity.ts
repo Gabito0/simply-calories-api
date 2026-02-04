@@ -1,6 +1,7 @@
 import { Entity, Column, OneToOne, JoinColumn, PrimaryColumn } from 'typeorm';
 import { User } from './user.entity';
 import { Sex } from '../enums/sex.enum';
+import { text } from 'stream/consumers';
 
 @Entity({ name: 'user_profiles' })
 export class UserProfile {
@@ -13,10 +14,10 @@ export class UserProfile {
   user: User;
 
   // Optional profile fields
-  @Column({ nullable: true })
+  @Column({ type: 'text', nullable: true })
   first_name: string | null;
 
-  @Column({ nullable: true })
+  @Column({ type: 'text', nullable: true })
   last_name: string | null;
 
   @Column({ type: 'date', nullable: true })
