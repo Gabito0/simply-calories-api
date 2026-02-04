@@ -28,7 +28,7 @@ export class User {
   @CreateDateColumn({ type: 'timestamptz' })
   created_at: Date;
 
-  @Column({ nullable: true })
+  @Column({ type: 'text', nullable: true })
   subject_identifier: string | null;
 
   @OneToOne(() => UserProfile, (profile) => profile.user)
